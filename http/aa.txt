@@ -1,0 +1,56 @@
+	int fd; /* client's socket fd */
+	int status; /* see #defines.h */
+	time_t time_last; /* time of last succ. op. */
+	char *pathname; /* pathname of requested file */
+	int simple; /* simple request? */
+	int keepalive; /* keepalive status */
+	int kacount; /* keepalive count */
+
+	int data_fd; /* fd of data */
+	unsigned long filesize; /* filesize */
+	unsigned long filepos; /* position in file */
+	char *data_mem; /* mmapped/malloced char array */
+	int method; /* M_GET, M_POST, etc. */
+
+	char *logline; /* line to log file */
+
+	char *header_line; /* beginning of un or incompletely processed header line */
+	char *header_end; /* last known end of header, or end of processed data */
+	int parse_pos; /* how much have we parsed */
+	int client_stream_pos; /* how much have we read... */
+
+	int buffer_start; /* where the buffer starts */
+	int buffer_end; /* where the buffer ends */
+
+	char *http_version; /* HTTP/?.? of req */
+	int response_status; /* R_NOT_FOUND etc. */
+
+	char *if_modified_since; /* If-Modified-Since */
+	time_t last_modified; /* Last-modified: */
+
+	/* CGI vars */
+
+	int remote_port; /* could be used for ident */
+
+
+	int is_cgi; /* true if CGI/NPH */
+	int cgi_status;
+	int cgi_env_index; /* index into array */
+
+	/* Agent and referer for logfiles */
+	char *header_user_agent;
+	char *header_referer;
+
+	int post_data_fd; /* fd for post data tmpfile */
+
+	char *path_info; /* env variable */
+	char *path_translated; /* env variable */
+	char *script_name; /* env variable */
+	char *query_string; /* env variable */
+	char *content_type; /* env variable */
+	char *content_length; /* env variable */
+
+	struct mmap_entry *mmap_entry_var;
+
+	struct request *next; /* next */
+	struct request *prev; /* previous */

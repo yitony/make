@@ -1,0 +1,4 @@
+cgi-like/ls: cannot access main.html: No such file or directory
+cgi-like/ls: cannot access aaa: No such file or directory
+cgi-like/ls: cannot access main.html: No such file or directory
+cgi-like/ls: cannot access ls: No such file or directory
